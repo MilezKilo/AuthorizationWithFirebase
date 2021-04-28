@@ -6,11 +6,35 @@
 //
 
 import SwiftUI
+import Firebase
+import FirebaseAuth
+
 
 struct ContentView: View {
+    
+    @State var status = UserDefaults.standard.value(forKey: "status") as? Bool ?? false
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        
+        VStack {
+            
+            if status {
+                
+                HomePage()
+            } else {
+                
+                SignIn()
+            }
+        }
+        .animation(.spring())
+        .onAppear {
+            
+            NotificationCenter.default.addObserver(forName: NSNotification.Name("statusChange"), object: nil, queue: .main) { (_) in
+                
+                let status = UserDefaults.standard.value(forKey: "status") as? Bool ?? false
+                self.status = status
+            }
+        }
     }
 }
 
