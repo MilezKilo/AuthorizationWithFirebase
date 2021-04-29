@@ -1,2 +1,2 @@
 # AuthorizationWithFirebase
-Simple authorization app, based on SwiftUi and Firebase
+Simple authorization app, based on SwiftUI and Firebase
